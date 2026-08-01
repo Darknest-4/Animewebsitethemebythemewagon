@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Jonas Lindqvist">
+<defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(150 78% 58%)"/><stop offset="1" stop-color="hsl(200 74% 40%)"/></linearGradient></defs>
+<rect width="160" height="160" rx="80" fill="url(#a)"/>
+<text x="80" y="102" text-anchor="middle" font-family="system-ui,Segoe UI,Roboto,sans-serif" font-size="62" font-weight="700" fill="#fff">JL</text>
+</svg>

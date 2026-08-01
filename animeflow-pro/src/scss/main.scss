@@ -1,0 +1,75 @@
+// =============================================================================
+// AnimeFlow Pro — stylesheet entry point
+//
+// Build order matters: tokens first, then the parts of Bootstrap we actually
+// use, then our own layers. Bootstrap modules we do not need (carousel,
+// navbar, card, list-group, pagination, spinners, toasts, popovers, tooltips)
+// are deliberately left out — the template implements those itself.
+//
+// Compiled size: ~249 kB minified, ~39 kB over gzip. Roughly 131 kB of that is
+// Bootstrap's utility API, kept on purpose so you have the full `d-*`, `gap-*`,
+// `text-*` vocabulary available. If you never touch those classes, comment out
+// the `utilities/api` import at the bottom of the Bootstrap block below and the
+// stylesheet drops to ~118 kB (~24 kB gzipped).
+// =============================================================================
+
+@import "variables";
+
+// --- Bootstrap 5.3 (selective) ----------------------------------------------
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
+
+// --- AnimeFlow ---------------------------------------------------------------
+@import "theme";
+@import "base";
+@import "layout";
+@import "components";
+@import "pages";
+
+// --- Small helpers -----------------------------------------------------------
+a { text-decoration: none; color: inherit; }
+img, svg, video { max-inline-size: 100%; }
+img { block-size: auto; }
+
+.af-stack   { display: grid; gap: 1rem; }
+.af-stack-sm { display: grid; gap: .5rem; }
+.af-row-gap { display: flex; flex-wrap: wrap; gap: .75rem; }
+.af-center  { display: grid; place-items: center; }
+.af-full-bleed { margin-inline: calc(50% - 50vw); padding-inline: calc(50vw - 50%); }
+.af-hidden  { display: none !important; }
+
+// Content-visibility keeps long pages cheap to paint without changing layout.
+.af-defer-paint { content-visibility: auto; contain-intrinsic-size: auto 480px; }
+
+// Print: drop the chrome, keep the content readable.
+@media print {
+  .af-header, .af-footer, .af-bottom-nav, .af-to-top, .af-cookies,
+  .af-toasts, .af-cursor, .af-progress-bar, .af-search-dialog { display: none !important; }
+  .af-body { background: #fff; color: #000; padding: 0; }
+  .af-body::before { display: none; }
+}

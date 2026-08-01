@@ -1,0 +1,421 @@
+// -----------------------------------------------------------------------------
+// Page-specific layouts
+// -----------------------------------------------------------------------------
+
+// Home hero ---------------------------------------------------------------
+.af-hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(3rem, 7vw, 6.5rem) clamp(2.5rem, 5vw, 4.5rem);
+  overflow: hidden;
+}
+.af-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  img { inline-size: 100%; block-size: 100%; object-fit: cover; opacity: .38; }
+  &::after { content: ""; position: absolute; inset: 0; background: var(--af-scrim); }
+}
+[data-bs-theme="light"] .af-hero-bg img { opacity: .22; }
+
+// Floating glow blobs. Pure CSS, GPU-cheap, disabled for reduced motion.
+.af-blob {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .55;
+  animation: af-float 18s ease-in-out infinite;
+  pointer-events: none;
+}
+.af-blob-1 { inline-size: 26rem; block-size: 26rem; inset-block-start: -8rem; inset-inline-start: -6rem; background: rgba($af-violet, .55); }
+.af-blob-2 { inline-size: 20rem; block-size: 20rem; inset-block-start: 30%; inset-inline-end: -5rem; background: rgba($af-cyan, .38); animation-delay: -6s; }
+.af-blob-3 { inline-size: 16rem; block-size: 16rem; inset-block-end: -6rem; inset-inline-start: 35%; background: rgba($af-pink, .32); animation-delay: -11s; }
+@keyframes af-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(3rem, -2rem, 0) scale(1.08); }
+  66%      { transform: translate3d(-2rem, 2.5rem, 0) scale(.94); }
+}
+@media (prefers-reduced-motion: reduce) { .af-blob { animation: none; } }
+
+.af-hero-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+  @include media-breakpoint-up(lg) { grid-template-columns: 1.15fr .85fr; gap: 3.5rem; }
+}
+.af-hero-copy {
+  h1 { margin: .75rem 0 1rem; letter-spacing: -.03em; }
+  > p { max-inline-size: 54ch; font-size: clamp(1rem, .95rem + .3vw, 1.15rem); color: var(--af-muted); }
+}
+.af-hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-block: 1.75rem; }
+.af-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1.25rem;
+  font-size: .875rem;
+  color: var(--af-muted);
+}
+.af-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .35rem .85rem .35rem .5rem;
+  border: 1px solid var(--af-glass-border);
+  border-radius: 50rem;
+  background: var(--af-glass);
+  backdrop-filter: blur(14px);
+  font-size: .82rem;
+  font-weight: 600;
+  .af-badge { margin-inline-end: .1rem; }
+}
+
+// Stacked poster showcase in the hero
+.af-hero-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-block-size: 22rem;
+  perspective: 1200px;
+}
+.af-hero-card {
+  position: relative;
+  inline-size: min(18rem, 68vw);
+  border-radius: var(--af-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--af-shadow);
+  transform: rotateY(-9deg) rotateX(3deg);
+  transition: transform .5s var(--af-ease);
+  img { inline-size: 100%; block-size: auto; display: block; }
+  &:hover { transform: rotateY(0) rotateX(0) translateY(-4px); }
+}
+.af-hero-card-info {
+  position: absolute;
+  inset-inline: .75rem;
+  inset-block-end: .75rem;
+  padding: .85rem 1rem;
+  border-radius: var(--af-radius);
+  background: rgba(#0b0b14, .68);
+  border: 1px solid rgba(#fff, .12);
+  backdrop-filter: blur(14px);
+  color: #fff;
+  b { display: block; font-size: .95rem; }
+  span { font-size: .78rem; opacity: .75; }
+}
+.af-hero-float {
+  position: absolute;
+  padding: .6rem .85rem;
+  border-radius: var(--af-radius);
+  background: var(--af-glass);
+  border: 1px solid var(--af-glass-border);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--af-shadow-sm);
+  font-size: .8rem;
+  font-weight: 600;
+  animation: af-bob 6s ease-in-out infinite;
+  display: none;
+  @include media-breakpoint-up(md) { display: flex; align-items: center; gap: .5rem; }
+}
+.af-hero-float-1 { inset-block-start: 6%; inset-inline-start: 0; }
+.af-hero-float-2 { inset-block-end: 24%; inset-inline-end: -1rem; animation-delay: -3s; }
+@keyframes af-bob { 50% { transform: translateY(-.6rem); } }
+@media (prefers-reduced-motion: reduce) { .af-hero-float { animation: none; } }
+
+// Genre strip -------------------------------------------------------------
+.af-genre-strip {
+  display: flex;
+  gap: .6rem;
+  overflow-x: auto;
+  padding-block-end: .5rem;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+// Browse ------------------------------------------------------------------
+.af-browse {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  @include media-breakpoint-up(lg) { grid-template-columns: 16.5rem 1fr; }
+}
+.af-browse-side {
+  display: none;
+  position: sticky;
+  inset-block-start: calc(var(--af-header-h) + 1rem);
+  padding: 1.35rem;
+  background: var(--af-surface);
+  border: 1px solid var(--af-border);
+  border-radius: var(--af-radius-lg);
+  max-block-size: calc(100vh - var(--af-header-h) - 2rem);
+  overflow-y: auto;
+  @include media-breakpoint-up(lg) { display: block; }
+}
+.af-browse-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  margin-block-end: 1.5rem;
+  p { margin: 0; font-size: .9rem; color: var(--af-muted); }
+}
+.af-active-filters { display: flex; flex-wrap: wrap; gap: .4rem; margin-block-end: 1rem; }
+
+// Details -----------------------------------------------------------------
+.af-detail-hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+  overflow: hidden;
+}
+.af-detail-grid {
+  display: grid;
+  gap: 2rem;
+  @include media-breakpoint-up(md) { grid-template-columns: 15rem 1fr; }
+}
+.af-detail-poster {
+  border-radius: var(--af-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--af-shadow);
+  img { inline-size: 100%; block-size: auto; display: block; }
+}
+.af-detail-body h1 { margin: .5rem 0 .75rem; }
+.af-detail-facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .9rem;
+  margin-block-end: 1rem;
+  font-size: .9rem;
+  color: var(--af-muted);
+}
+.af-detail-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-block: 1.5rem; }
+.af-detail-cols {
+  display: grid;
+  gap: 2rem;
+  @include media-breakpoint-up(lg) { grid-template-columns: 1fr 20rem; }
+}
+
+// Watch -------------------------------------------------------------------
+.af-watch {
+  display: grid;
+  gap: 1.75rem;
+  @include media-breakpoint-up(xl) { grid-template-columns: 1fr 22rem; }
+}
+.af-player {
+  position: relative;
+  border-radius: var(--af-radius-lg);
+  overflow: hidden;
+  background: #05050c;
+}
+.af-player-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  padding: .85rem 1rem;
+  background: var(--af-surface);
+  border: 1px solid var(--af-border);
+  border-block-start: 0;
+  border-radius: 0 0 var(--af-radius-lg) var(--af-radius-lg);
+}
+.af-player-bar .af-icon-btn { inline-size: 2.25rem; block-size: 2.25rem; }
+.af-episode-panel {
+  padding: 1.15rem;
+  background: var(--af-surface);
+  border: 1px solid var(--af-border);
+  border-radius: var(--af-radius-lg);
+  max-block-size: 34rem;
+  overflow-y: auto;
+}
+
+// Dashboard ---------------------------------------------------------------
+.af-dash {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  @include media-breakpoint-up(lg) { grid-template-columns: 15rem 1fr; }
+}
+.af-dash-side {
+  padding: 1.25rem;
+  background: var(--af-surface);
+  border: 1px solid var(--af-border);
+  border-radius: var(--af-radius-lg);
+  @include media-breakpoint-up(lg) { position: sticky; inset-block-start: calc(var(--af-header-h) + 1rem); }
+}
+.af-dash-user {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding-block-end: 1rem;
+  margin-block-end: 1rem;
+  border-block-end: 1px solid var(--af-border);
+  b { display: block; font-size: .95rem; }
+  span { font-size: .8rem; color: var(--af-muted); }
+}
+.af-dash-nav {
+  margin: 0; padding: 0; list-style: none;
+  display: grid;
+  gap: .15rem;
+  a {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .55rem .7rem;
+    border-radius: var(--af-radius);
+    color: var(--af-muted);
+    font-size: .92rem;
+    font-weight: 600;
+    &:hover { color: var(--af-text); background: var(--af-surface-2); }
+    &.is-active { color: var(--af-brand-2); background: rgba($af-violet, .12); }
+  }
+}
+.af-dash-cards {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  @include media-breakpoint-up(lg) { grid-template-columns: repeat(4, 1fr); }
+}
+.af-continue-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+// Auth --------------------------------------------------------------------
+.af-auth {
+  display: grid;
+  min-block-size: calc(100svh - var(--af-header-h));
+  align-items: center;
+  padding-block: 2.5rem;
+  @include media-breakpoint-up(lg) { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+.af-auth-card {
+  inline-size: min(27rem, 100%);
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--af-glass);
+  border: 1px solid var(--af-glass-border);
+  border-radius: var(--af-radius-xl);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  box-shadow: var(--af-shadow);
+  h1 { font-size: 1.7rem; margin-block-end: .35rem; }
+  > p { color: var(--af-muted); font-size: .92rem; }
+}
+.af-auth-aside {
+  display: none;
+  position: relative;
+  padding: 2.5rem;
+  border-radius: var(--af-radius-xl);
+  background: var(--af-gradient-soft);
+  border: 1px solid var(--af-border-strong);
+  overflow: hidden;
+  @include media-breakpoint-up(lg) { display: grid; align-content: center; gap: 1.25rem; }
+  h2 { font-size: 1.9rem; }
+}
+.af-auth-social { display: grid; gap: .6rem; grid-template-columns: 1fr 1fr; }
+.af-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-block: 1.25rem;
+  color: var(--af-muted);
+  font-size: .8rem;
+  &::before, &::after { content: ""; flex: 1; block-size: 1px; background: var(--af-border); }
+}
+.af-auth-foot { margin-block-start: 1.25rem; text-align: center; font-size: .9rem; color: var(--af-muted); }
+
+// 404 ---------------------------------------------------------------------
+.af-404 {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  min-block-size: calc(100svh - var(--af-header-h) - 4rem);
+  text-align: center;
+  padding-block: 3rem;
+}
+.af-404-code {
+  font-size: clamp(6rem, 4rem + 14vw, 13rem);
+  font-weight: 800;
+  line-height: .85;
+  letter-spacing: -.05em;
+  background: var(--af-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: af-glitch 6s infinite;
+}
+@keyframes af-glitch {
+  0%, 92%, 100% { transform: none; filter: none; }
+  93% { transform: translateX(-4px) skewX(3deg); filter: hue-rotate(35deg); }
+  95% { transform: translateX(4px) skewX(-3deg); }
+  97% { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .af-404-code { animation: none; } }
+
+// Documentation -----------------------------------------------------------
+.af-docs {
+  display: grid;
+  gap: 2.5rem;
+  align-items: start;
+  @include media-breakpoint-up(lg) { grid-template-columns: 15rem 1fr; }
+}
+.af-docs-side {
+  position: sticky;
+  inset-block-start: calc(var(--af-header-h) + 1rem);
+  display: none;
+  @include media-breakpoint-up(lg) { display: block; }
+  ul { margin: 0 0 1.25rem; padding: 0; list-style: none; display: grid; gap: .1rem; }
+  a {
+    display: block;
+    padding: .35rem .6rem;
+    border-radius: .5rem;
+    color: var(--af-muted);
+    font-size: .9rem;
+    &:hover, &.is-active { color: var(--af-text); background: var(--af-surface-2); }
+  }
+}
+.af-docs-heading {
+  margin-block: 1rem .4rem;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--af-brand-2);
+}
+
+// Components showcase -----------------------------------------------------
+.af-showcase {
+  padding: 1.5rem;
+  margin-block-end: 1.5rem;
+  background: var(--af-surface);
+  border: 1px solid var(--af-border);
+  border-radius: var(--af-radius-lg);
+}
+.af-showcase-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-end: 1.15rem;
+  padding-block-end: .75rem;
+  border-block-end: 1px solid var(--af-border);
+  h3 { margin: 0; font-size: 1.05rem; }
+  span { font-size: .78rem; color: var(--af-muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+}
+.af-showcase-demo { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+
+// Page header (shared by inner pages) -------------------------------------
+// `.af-main > section` already carries vertical rhythm, so this one only adds
+// a little on top and takes none off the bottom — otherwise inner pages open
+// with an awkward gap between the title and the content.
+.af-page-head {
+  position: relative;
+  padding-block: clamp(1.5rem, 3vw, 2.5rem) 0 !important;
+  h1 { margin: .5rem 0; font-size: clamp(1.9rem, 1.45rem + 1.9vw, 3rem); }
+  p { max-inline-size: 62ch; color: var(--af-muted); margin: 0; }
+}
+.af-page-head + section,
+.af-page-head + .container { padding-block-start: clamp(1.25rem, 2.5vw, 2rem); }

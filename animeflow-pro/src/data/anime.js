@@ -1,0 +1,423 @@
+/**
+ * AnimeFlow Pro — sample catalogue.
+ *
+ * This is DEMO DATA shipped with the template so every page looks alive out of
+ * the box. Replace it with your own API response: `build.js` writes this array
+ * to `dist/assets/data/anime.json`, and the front-end only ever talks to that
+ * JSON file (see `src/js/modules/store.js`). Swap the URL, keep the field
+ * names, and the whole UI keeps working.
+ *
+ * Field reference
+ *   slug      unique id, used for URLs and localStorage keys
+ *   title     display title
+ *   year      first air year
+ *   studio    animation studio
+ *   genres    array of genre strings (drives the filter UI)
+ *   episodes  episode count (1 for films)
+ *   duration  minutes per episode
+ *   rating    0–10, one decimal
+ *   status    Airing | Finished | Upcoming
+ *   type      TV | Movie | OVA
+ *   hue       0–360, seeds the generated poster art
+ *   tags      free-form badges: trending / top / popular / upcoming / new
+ */
+
+export const genres = [
+  'Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Sci-Fi',
+  'Slice of Life', 'Sports', 'Supernatural', 'Thriller', 'Mystery', 'Romance'
+];
+
+export const studios = [
+  'MAPPA', 'ufotable', 'Bones', 'Madhouse', 'Wit Studio', 'Kyoto Animation',
+  'Production I.G', 'A-1 Pictures', 'CloverWorks', 'Toei Animation',
+  'Studio Pierrot', 'Sunrise', 'Trigger', 'Science SARU', 'Studio Ghibli'
+];
+
+export const anime = [
+  {
+    slug: 'frieren-beyond-journeys-end', title: "Frieren: Beyond Journey's End",
+    year: 2023, studio: 'Madhouse', genres: ['Adventure', 'Fantasy', 'Drama'],
+    episodes: 28, duration: 24, rating: 9.3, status: 'Finished', type: 'TV', hue: 190,
+    tags: ['trending', 'top'],
+    synopsis: 'The elf mage Frieren outlives the heroes she once travelled with, and sets out to understand the human lives that passed her by in a blink.'
+  },
+  {
+    slug: 'fullmetal-alchemist-brotherhood', title: 'Fullmetal Alchemist: Brotherhood',
+    year: 2009, studio: 'Bones', genres: ['Action', 'Adventure', 'Drama'],
+    episodes: 64, duration: 24, rating: 9.1, status: 'Finished', type: 'TV', hue: 40,
+    tags: ['top', 'popular'],
+    synopsis: 'Two brothers pay a terrible price for a forbidden transmutation, and chase the Philosopher’s Stone across a country built on alchemy and war.'
+  },
+  {
+    slug: 'steins-gate', title: 'Steins;Gate',
+    year: 2011, studio: 'White Fox', genres: ['Sci-Fi', 'Thriller', 'Drama'],
+    episodes: 24, duration: 24, rating: 9.0, status: 'Finished', type: 'TV', hue: 25,
+    tags: ['top'],
+    synopsis: 'A self-styled mad scientist discovers his microwave can send text messages to the past, then learns what every change costs.'
+  },
+  {
+    slug: 'hunter-x-hunter', title: 'Hunter x Hunter',
+    year: 2011, studio: 'Madhouse', genres: ['Action', 'Adventure', 'Fantasy'],
+    episodes: 148, duration: 23, rating: 9.0, status: 'Finished', type: 'TV', hue: 130,
+    tags: ['top', 'popular'],
+    synopsis: 'Gon Freecss takes the deadly Hunter Exam to find the father who left him, and meets the friends who will define the journey.'
+  },
+  {
+    slug: 'monster', title: 'Monster',
+    year: 2004, studio: 'Madhouse', genres: ['Thriller', 'Mystery', 'Drama'],
+    episodes: 74, duration: 24, rating: 9.0, status: 'Finished', type: 'TV', hue: 210,
+    tags: ['top'],
+    synopsis: 'A brilliant surgeon saves a boy’s life and spends the next decade hunting the man that boy became.'
+  },
+  {
+    slug: 'attack-on-titan', title: 'Attack on Titan',
+    year: 2013, studio: 'Wit Studio', genres: ['Action', 'Drama', 'Fantasy'],
+    episodes: 89, duration: 24, rating: 9.0, status: 'Finished', type: 'TV', hue: 355,
+    tags: ['top', 'popular', 'trending'],
+    synopsis: 'Humanity huddles behind enormous walls until the day the Colossal Titan kicks a hole in everything they believed was safe.'
+  },
+  {
+    slug: 'gintama', title: 'Gintama',
+    year: 2006, studio: 'Sunrise', genres: ['Action', 'Comedy', 'Sci-Fi'],
+    episodes: 201, duration: 24, rating: 8.9, status: 'Finished', type: 'TV', hue: 205,
+    tags: ['top'],
+    synopsis: 'Aliens conquered Edo, samurai lost their swords, and one silver-haired odd-jobs man refuses to take any of it seriously.'
+  },
+  {
+    slug: 'a-silent-voice', title: 'A Silent Voice',
+    year: 2016, studio: 'Kyoto Animation', genres: ['Drama', 'Romance'],
+    episodes: 1, duration: 130, rating: 8.9, status: 'Finished', type: 'Movie', hue: 195,
+    tags: ['top'],
+    synopsis: 'A former bully tries to reach the deaf classmate he tormented, years after the damage was done.'
+  },
+  {
+    slug: 'your-name', title: 'Your Name',
+    year: 2016, studio: 'CoMix Wave Films', genres: ['Romance', 'Drama', 'Supernatural'],
+    episodes: 1, duration: 106, rating: 8.8, status: 'Finished', type: 'Movie', hue: 220,
+    tags: ['top', 'popular'],
+    synopsis: 'Two teenagers keep waking up in each other’s bodies, and the reason why is stranger and sadder than either imagined.'
+  },
+  {
+    slug: 'spirited-away', title: 'Spirited Away',
+    year: 2001, studio: 'Studio Ghibli', genres: ['Adventure', 'Fantasy'],
+    episodes: 1, duration: 125, rating: 8.8, status: 'Finished', type: 'Movie', hue: 15,
+    tags: ['top'],
+    synopsis: 'A sullen ten-year-old wanders into a bathhouse for spirits and has to work for her name back.'
+  },
+  {
+    slug: 'vinland-saga', title: 'Vinland Saga',
+    year: 2019, studio: 'Wit Studio', genres: ['Action', 'Adventure', 'Drama'],
+    episodes: 24, duration: 24, rating: 8.7, status: 'Finished', type: 'TV', hue: 30,
+    tags: ['top'],
+    synopsis: 'A boy raised on revenge follows his father’s killer across a Viking Europe that has no room for peace.'
+  },
+  {
+    slug: 'cowboy-bebop', title: 'Cowboy Bebop',
+    year: 1998, studio: 'Sunrise', genres: ['Action', 'Sci-Fi', 'Drama'],
+    episodes: 26, duration: 24, rating: 8.7, status: 'Finished', type: 'TV', hue: 260,
+    tags: ['top'],
+    synopsis: 'Bounty hunters drift between planets on a battered ship, each of them running from a past that keeps catching up.'
+  },
+  {
+    slug: 'code-geass', title: 'Code Geass',
+    year: 2006, studio: 'Sunrise', genres: ['Action', 'Drama', 'Sci-Fi'],
+    episodes: 25, duration: 24, rating: 8.7, status: 'Finished', type: 'TV', hue: 280,
+    tags: ['top', 'popular'],
+    synopsis: 'An exiled prince is handed absolute obedience as a power, and turns a rigged empire into a chessboard.'
+  },
+  {
+    slug: 'haikyu', title: 'Haikyu!!',
+    year: 2014, studio: 'Production I.G', genres: ['Sports', 'Comedy', 'Drama'],
+    episodes: 25, duration: 24, rating: 8.7, status: 'Finished', type: 'TV', hue: 35,
+    tags: ['top', 'popular'],
+    synopsis: 'A short kid with an enormous vertical joins a fallen volleyball powerhouse and refuses to be told he is too small.'
+  },
+  {
+    slug: 'made-in-abyss', title: 'Made in Abyss',
+    year: 2017, studio: 'Kinema Citrus', genres: ['Adventure', 'Fantasy', 'Drama'],
+    episodes: 13, duration: 25, rating: 8.7, status: 'Finished', type: 'TV', hue: 165,
+    tags: ['top'],
+    synopsis: 'A cheerful girl and a robot boy descend a bottomless pit that punishes everyone who tries to climb back out.'
+  },
+  {
+    slug: 'violet-evergarden', title: 'Violet Evergarden',
+    year: 2018, studio: 'Kyoto Animation', genres: ['Drama', 'Fantasy', 'Romance'],
+    episodes: 13, duration: 24, rating: 8.7, status: 'Finished', type: 'TV', hue: 200,
+    tags: ['top'],
+    synopsis: 'A former child soldier writes letters for strangers while trying to understand the last thing anyone said to her.'
+  },
+  {
+    slug: 'bocchi-the-rock', title: 'Bocchi the Rock!',
+    year: 2022, studio: 'CloverWorks', genres: ['Comedy', 'Slice of Life'],
+    episodes: 12, duration: 24, rating: 8.7, status: 'Finished', type: 'TV', hue: 340,
+    tags: ['top', 'popular'],
+    synopsis: 'A guitarist with crippling social anxiety somehow ends up in a band, and survives it one panic attack at a time.'
+  },
+  {
+    slug: 'the-apothecary-diaries', title: 'The Apothecary Diaries',
+    year: 2023, studio: 'TOHO animation STUDIO', genres: ['Mystery', 'Drama', 'Romance'],
+    episodes: 24, duration: 24, rating: 8.7, status: 'Airing', type: 'TV', hue: 350,
+    tags: ['trending', 'top'],
+    synopsis: 'A pharmacist sold into the imperial rear palace solves poisonings she was never supposed to notice.'
+  },
+  {
+    slug: 'one-piece', title: 'One Piece',
+    year: 1999, studio: 'Toei Animation', genres: ['Action', 'Adventure', 'Comedy'],
+    episodes: 1122, duration: 24, rating: 8.7, status: 'Airing', type: 'TV', hue: 350,
+    tags: ['popular', 'trending'],
+    synopsis: 'A rubber-limbed idiot with a straw hat sails toward the world’s greatest treasure and collects a crew of misfits on the way.'
+  },
+  {
+    slug: 'death-note', title: 'Death Note',
+    year: 2006, studio: 'Madhouse', genres: ['Thriller', 'Mystery', 'Supernatural'],
+    episodes: 37, duration: 23, rating: 8.6, status: 'Finished', type: 'TV', hue: 0,
+    tags: ['top', 'popular'],
+    synopsis: 'A gifted student finds a notebook that kills anyone whose name he writes, and a detective who is exactly as clever as he is.'
+  },
+  {
+    slug: 'jujutsu-kaisen', title: 'Jujutsu Kaisen',
+    year: 2020, studio: 'MAPPA', genres: ['Action', 'Supernatural', 'Fantasy'],
+    episodes: 47, duration: 24, rating: 8.6, status: 'Airing', type: 'TV', hue: 265,
+    tags: ['trending', 'popular'],
+    synopsis: 'A high schooler swallows a cursed finger, becomes the vessel of a monster, and is enrolled in a school for exorcists.'
+  },
+  {
+    slug: 'oshi-no-ko', title: 'Oshi no Ko',
+    year: 2023, studio: 'Doga Kobo', genres: ['Drama', 'Mystery', 'Supernatural'],
+    episodes: 24, duration: 24, rating: 8.6, status: 'Finished', type: 'TV', hue: 320,
+    tags: ['trending', 'top'],
+    synopsis: 'A doctor is reborn as the child of the idol he adored, and grows up inside the industry that destroyed her.'
+  },
+  {
+    slug: 'cyberpunk-edgerunners', title: 'Cyberpunk: Edgerunners',
+    year: 2022, studio: 'Trigger', genres: ['Action', 'Sci-Fi', 'Drama'],
+    episodes: 10, duration: 25, rating: 8.6, status: 'Finished', type: 'TV', hue: 300,
+    tags: ['top', 'popular'],
+    synopsis: 'A street kid in Night City chases the mercenary dream, and every upgrade takes a little more of him.'
+  },
+  {
+    slug: 'demon-slayer', title: 'Demon Slayer: Kimetsu no Yaiba',
+    year: 2019, studio: 'ufotable', genres: ['Action', 'Fantasy', 'Supernatural'],
+    episodes: 55, duration: 24, rating: 8.5, status: 'Airing', type: 'TV', hue: 15,
+    tags: ['trending', 'popular'],
+    synopsis: 'After a demon slaughters his family, Tanjiro joins the corps that hunts them — carrying his transformed sister on his back.'
+  },
+  {
+    slug: 'spy-x-family', title: 'Spy x Family',
+    year: 2022, studio: 'Wit Studio', genres: ['Action', 'Comedy', 'Slice of Life'],
+    episodes: 37, duration: 24, rating: 8.5, status: 'Airing', type: 'TV', hue: 145,
+    tags: ['trending', 'popular'],
+    synopsis: 'A spy fakes a family for a mission, unaware his wife is an assassin and his daughter reads minds.'
+  },
+  {
+    slug: 'mob-psycho-100', title: 'Mob Psycho 100',
+    year: 2016, studio: 'Bones', genres: ['Action', 'Comedy', 'Supernatural'],
+    episodes: 37, duration: 24, rating: 8.5, status: 'Finished', type: 'TV', hue: 175,
+    tags: ['top'],
+    synopsis: 'An overwhelmingly powerful psychic just wants to be normal, and works for a con man who tells him he already is.'
+  },
+  {
+    slug: 'one-punch-man', title: 'One Punch Man',
+    year: 2015, studio: 'Madhouse', genres: ['Action', 'Comedy', 'Sci-Fi'],
+    episodes: 24, duration: 24, rating: 8.5, status: 'Finished', type: 'TV', hue: 50,
+    tags: ['popular', 'top'],
+    synopsis: 'A hero who wins every fight in a single punch is profoundly, hilariously bored.'
+  },
+  {
+    slug: 'dandadan', title: 'Dandadan',
+    year: 2024, studio: 'Science SARU', genres: ['Action', 'Comedy', 'Supernatural'],
+    episodes: 24, duration: 24, rating: 8.5, status: 'Airing', type: 'TV', hue: 285,
+    tags: ['trending', 'new'],
+    synopsis: 'One believes in aliens, the other in ghosts. They are both right, and it ruins their lives immediately.'
+  },
+  {
+    slug: 'ranking-of-kings', title: 'Ranking of Kings',
+    year: 2021, studio: 'Wit Studio', genres: ['Adventure', 'Fantasy', 'Drama'],
+    episodes: 23, duration: 24, rating: 8.5, status: 'Finished', type: 'TV', hue: 45,
+    tags: ['top'],
+    synopsis: 'A deaf, powerless prince everybody laughs at sets out to become the greatest king in the world.'
+  },
+  {
+    slug: 'chainsaw-man', title: 'Chainsaw Man',
+    year: 2022, studio: 'MAPPA', genres: ['Action', 'Supernatural', 'Comedy'],
+    episodes: 12, duration: 24, rating: 8.4, status: 'Finished', type: 'TV', hue: 10,
+    tags: ['popular', 'trending'],
+    synopsis: 'A devil hunter drowning in debt fuses with his chainsaw dog and gets recruited by the people who own him next.'
+  },
+  {
+    slug: 're-zero', title: 'Re:ZERO -Starting Life in Another World-',
+    year: 2016, studio: 'White Fox', genres: ['Drama', 'Fantasy', 'Thriller'],
+    episodes: 50, duration: 24, rating: 8.3, status: 'Airing', type: 'TV', hue: 235,
+    tags: ['popular'],
+    synopsis: 'Summoned to a fantasy world with exactly one power — dying and starting over — Subaru pays for every save point.'
+  },
+  {
+    slug: 'blue-lock', title: 'Blue Lock',
+    year: 2022, studio: '8bit', genres: ['Sports', 'Drama'],
+    episodes: 38, duration: 24, rating: 8.3, status: 'Airing', type: 'TV', hue: 220,
+    tags: ['trending'],
+    synopsis: 'Japan locks three hundred strikers in a facility to manufacture the most selfish goal-scorer alive.'
+  },
+  {
+    slug: 'fate-zero', title: 'Fate/Zero',
+    year: 2011, studio: 'ufotable', genres: ['Action', 'Fantasy', 'Supernatural'],
+    episodes: 25, duration: 24, rating: 8.3, status: 'Finished', type: 'TV', hue: 250,
+    tags: ['top'],
+    synopsis: 'Seven mages summon seven heroic spirits and tear a city apart over a wish-granting cup.'
+  },
+  {
+    slug: 'erased', title: 'Erased',
+    year: 2016, studio: 'A-1 Pictures', genres: ['Mystery', 'Thriller', 'Supernatural'],
+    episodes: 12, duration: 23, rating: 8.3, status: 'Finished', type: 'TV', hue: 200,
+    tags: ['top'],
+    synopsis: 'A man who involuntarily rewinds time is thrown back to 1988, to the month a classmate was murdered.'
+  },
+  {
+    slug: 'parasyte', title: 'Parasyte -the maxim-',
+    year: 2014, studio: 'Madhouse', genres: ['Action', 'Sci-Fi', 'Thriller'],
+    episodes: 24, duration: 24, rating: 8.3, status: 'Finished', type: 'TV', hue: 155,
+    tags: ['top'],
+    synopsis: 'An alien parasite takes over a teenager’s right hand instead of his brain, and the two have to negotiate.'
+  },
+  {
+    slug: 'neon-genesis-evangelion', title: 'Neon Genesis Evangelion',
+    year: 1995, studio: 'Gainax', genres: ['Action', 'Drama', 'Sci-Fi'],
+    episodes: 26, duration: 24, rating: 8.3, status: 'Finished', type: 'TV', hue: 275,
+    tags: ['top'],
+    synopsis: 'A boy is ordered into a biomechanical war machine by the father who abandoned him, and the war is the easy part.'
+  },
+  {
+    slug: 'solo-leveling', title: 'Solo Leveling',
+    year: 2024, studio: 'A-1 Pictures', genres: ['Action', 'Fantasy', 'Adventure'],
+    episodes: 25, duration: 24, rating: 8.2, status: 'Airing', type: 'TV', hue: 245,
+    tags: ['trending', 'popular', 'new'],
+    synopsis: 'The weakest hunter alive is handed a system nobody else can see, and starts climbing.'
+  },
+  {
+    slug: 'dr-stone', title: 'Dr. Stone',
+    year: 2019, studio: 'TMS Entertainment', genres: ['Adventure', 'Comedy', 'Sci-Fi'],
+    episodes: 24, duration: 24, rating: 8.2, status: 'Finished', type: 'TV', hue: 100,
+    tags: ['popular'],
+    synopsis: 'Humanity is turned to stone for 3,700 years. One teenager wakes up and decides to rebuild civilisation from scratch.'
+  },
+  {
+    slug: 'bleach', title: 'Bleach',
+    year: 2004, studio: 'Studio Pierrot', genres: ['Action', 'Supernatural', 'Adventure'],
+    episodes: 366, duration: 24, rating: 8.2, status: 'Airing', type: 'TV', hue: 195,
+    tags: ['popular'],
+    synopsis: 'A teenager who can see ghosts inherits a soul reaper’s power and the duty that comes with it.'
+  },
+  {
+    slug: 'dragon-ball-z', title: 'Dragon Ball Z',
+    year: 1989, studio: 'Toei Animation', genres: ['Action', 'Adventure', 'Comedy'],
+    episodes: 291, duration: 24, rating: 8.2, status: 'Finished', type: 'TV', hue: 30,
+    tags: ['popular'],
+    synopsis: 'Goku learns he is an alien, and the galaxy keeps sending stronger reasons to train.'
+  },
+  {
+    slug: 'konosuba', title: 'KonoSuba: God’s Blessing on This Wonderful World!',
+    year: 2016, studio: 'Studio Deen', genres: ['Comedy', 'Fantasy', 'Adventure'],
+    episodes: 20, duration: 24, rating: 8.1, status: 'Finished', type: 'TV', hue: 195,
+    tags: ['popular'],
+    synopsis: 'A shut-in dies stupidly, is offered any gift for his new life, and picks the useless goddess who mocked him.'
+  },
+  {
+    slug: 'kaiju-no-8', title: 'Kaiju No. 8',
+    year: 2024, studio: 'Production I.G', genres: ['Action', 'Sci-Fi'],
+    episodes: 12, duration: 24, rating: 8.0, status: 'Airing', type: 'TV', hue: 5,
+    tags: ['trending', 'new'],
+    synopsis: 'A 32-year-old monster-cleanup worker turns into the thing he sweeps up, and applies to the Defence Force anyway.'
+  },
+  {
+    slug: 'naruto', title: 'Naruto',
+    year: 2002, studio: 'Studio Pierrot', genres: ['Action', 'Adventure', 'Comedy'],
+    episodes: 220, duration: 23, rating: 8.0, status: 'Finished', type: 'TV', hue: 35,
+    tags: ['popular'],
+    synopsis: 'A loud orphan with a demon fox sealed inside him wants the village that hates him to call him leader.'
+  },
+  {
+    slug: 'my-hero-academia', title: 'My Hero Academia',
+    year: 2016, studio: 'Bones', genres: ['Action', 'Adventure', 'Comedy'],
+    episodes: 138, duration: 24, rating: 7.9, status: 'Finished', type: 'TV', hue: 120,
+    tags: ['popular'],
+    synopsis: 'In a world where nearly everyone has a superpower, the boy with none is handed the greatest one.'
+  },
+  {
+    slug: 'overlord', title: 'Overlord',
+    year: 2015, studio: 'Madhouse', genres: ['Action', 'Fantasy', 'Adventure'],
+    episodes: 52, duration: 24, rating: 7.9, status: 'Finished', type: 'TV', hue: 290,
+    tags: ['popular'],
+    synopsis: 'A guild master is trapped in his own MMO as an undead overlord, and decides to see how far the role goes.'
+  },
+  {
+    slug: 'tokyo-ghoul', title: 'Tokyo Ghoul',
+    year: 2014, studio: 'Studio Pierrot', genres: ['Action', 'Drama', 'Supernatural'],
+    episodes: 12, duration: 24, rating: 7.8, status: 'Finished', type: 'TV', hue: 350,
+    tags: ['popular'],
+    synopsis: 'A student survives an attack with a transplant that makes him half of the thing that tried to eat him.'
+  },
+  {
+    slug: 'wind-breaker', title: 'Wind Breaker',
+    year: 2024, studio: 'CloverWorks', genres: ['Action', 'Drama'],
+    episodes: 25, duration: 24, rating: 7.8, status: 'Airing', type: 'TV', hue: 165,
+    tags: ['new'],
+    synopsis: 'A transfer student arrives at the country’s most notorious delinquent school and finds it protects the town.'
+  },
+  {
+    slug: 'sakamoto-days', title: 'Sakamoto Days',
+    year: 2025, studio: 'TMS Entertainment', genres: ['Action', 'Comedy'],
+    episodes: 22, duration: 24, rating: 7.6, status: 'Airing', type: 'TV', hue: 210,
+    tags: ['new', 'trending'],
+    synopsis: 'The greatest hitman alive retired, got married, and now runs a corner shop that keeps getting attacked.'
+  },
+  {
+    slug: 'frieren-season-2', title: "Frieren: Beyond Journey's End — Season 2",
+    year: 2026, studio: 'Madhouse', genres: ['Adventure', 'Fantasy', 'Drama'],
+    episodes: 0, duration: 24, rating: 0, status: 'Upcoming', type: 'TV', hue: 185,
+    tags: ['upcoming'],
+    synopsis: 'The first-class mage exam continues, and the journey north resumes.'
+  },
+  {
+    slug: 'one-punch-man-season-3', title: 'One Punch Man — Season 3',
+    year: 2026, studio: 'J.C.Staff', genres: ['Action', 'Comedy', 'Sci-Fi'],
+    episodes: 0, duration: 24, rating: 0, status: 'Upcoming', type: 'TV', hue: 55,
+    tags: ['upcoming'],
+    synopsis: 'The Monster Association arc brings the Hero Association its worst week on record.'
+  },
+  {
+    slug: 'vinland-saga-season-3', title: 'Vinland Saga — Season 3',
+    year: 2026, studio: 'MAPPA', genres: ['Action', 'Adventure', 'Drama'],
+    episodes: 0, duration: 24, rating: 0, status: 'Upcoming', type: 'TV', hue: 25,
+    tags: ['upcoming'],
+    synopsis: 'Thorfinn sails west, still trying to build a country without warriors.'
+  },
+  {
+    slug: 'solo-leveling-season-3', title: 'Solo Leveling — Season 3',
+    year: 2026, studio: 'A-1 Pictures', genres: ['Action', 'Fantasy'],
+    episodes: 0, duration: 24, rating: 0, status: 'Upcoming', type: 'TV', hue: 255,
+    tags: ['upcoming'],
+    synopsis: 'The Shadow Monarch arc escalates, and the gates stop pretending to be dungeons.'
+  }
+];
+
+/** Weekly simulcast grid used by schedule.html. */
+export const schedule = [
+  { day: 'Monday', items: ['solo-leveling', 'blue-lock'] },
+  { day: 'Tuesday', items: ['one-piece', 'wind-breaker'] },
+  { day: 'Wednesday', items: ['dandadan', 'bleach'] },
+  { day: 'Thursday', items: ['jujutsu-kaisen', 'sakamoto-days'] },
+  { day: 'Friday', items: ['the-apothecary-diaries', 'kaiju-no-8'] },
+  { day: 'Saturday', items: ['demon-slayer', 're-zero'] },
+  { day: 'Sunday', items: ['spy-x-family'] }
+];
+
+/** Seeds the "Continue watching" rail on the dashboard. */
+export const continueWatching = [
+  { slug: 'frieren-beyond-journeys-end', episode: 12, progress: 64 },
+  { slug: 'jujutsu-kaisen', episode: 31, progress: 22 },
+  { slug: 'spy-x-family', episode: 7, progress: 88 },
+  { slug: 'solo-leveling', episode: 4, progress: 41 },
+  { slug: 'dandadan', episode: 9, progress: 12 }
+];
+
+export const bySlug = Object.fromEntries(anime.map((a) => [a.slug, a]));
