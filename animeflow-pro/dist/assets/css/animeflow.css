@@ -14285,7 +14285,7 @@ html {
 }
 @media (min-width: 992px) {
   .af-browse {
-    grid-template-columns: 16.5rem 1fr;
+    grid-template-columns: 16.5rem minmax(0, 1fr);
   }
 }
 
@@ -14339,7 +14339,7 @@ html {
 }
 @media (min-width: 768px) {
   .af-detail-grid {
-    grid-template-columns: 15rem 1fr;
+    grid-template-columns: 15rem minmax(0, 1fr);
   }
 }
 
@@ -14381,7 +14381,7 @@ html {
 }
 @media (min-width: 992px) {
   .af-detail-cols {
-    grid-template-columns: 1fr 20rem;
+    grid-template-columns: minmax(0, 1fr) 20rem;
   }
 }
 
@@ -14391,7 +14391,7 @@ html {
 }
 @media (min-width: 1200px) {
   .af-watch {
-    grid-template-columns: 1fr 22rem;
+    grid-template-columns: minmax(0, 1fr) 22rem;
   }
 }
 
@@ -14435,7 +14435,7 @@ html {
 }
 @media (min-width: 992px) {
   .af-dash {
-    grid-template-columns: 15rem 1fr;
+    grid-template-columns: 15rem minmax(0, 1fr);
   }
 }
 
@@ -14640,9 +14640,12 @@ html {
   gap: 2.5rem;
   align-items: start;
 }
+.af-docs > * {
+  min-inline-size: 0;
+}
 @media (min-width: 992px) {
   .af-docs {
-    grid-template-columns: 15rem 1fr;
+    grid-template-columns: 15rem minmax(0, 1fr);
   }
 }
 
@@ -14685,6 +14688,7 @@ html {
 }
 
 .af-showcase {
+  min-inline-size: 0;
   padding: 1.5rem;
   margin-block-end: 1.5rem;
   background: var(--af-surface);
@@ -14716,6 +14720,10 @@ html {
   flex-wrap: wrap;
   gap: 1rem;
   align-items: flex-start;
+  min-inline-size: 0;
+}
+.af-showcase-demo > * {
+  max-inline-size: 100%;
 }
 
 .af-page-head {

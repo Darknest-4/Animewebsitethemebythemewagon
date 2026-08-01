@@ -138,7 +138,7 @@
   display: grid;
   gap: 2rem;
   align-items: start;
-  @include media-breakpoint-up(lg) { grid-template-columns: 16.5rem 1fr; }
+  @include media-breakpoint-up(lg) { grid-template-columns: 16.5rem minmax(0, 1fr); }
 }
 .af-browse-side {
   display: none;
@@ -172,7 +172,7 @@
 .af-detail-grid {
   display: grid;
   gap: 2rem;
-  @include media-breakpoint-up(md) { grid-template-columns: 15rem 1fr; }
+  @include media-breakpoint-up(md) { grid-template-columns: 15rem minmax(0, 1fr); }
 }
 .af-detail-poster {
   border-radius: var(--af-radius-xl);
@@ -194,14 +194,14 @@
 .af-detail-cols {
   display: grid;
   gap: 2rem;
-  @include media-breakpoint-up(lg) { grid-template-columns: 1fr 20rem; }
+  @include media-breakpoint-up(lg) { grid-template-columns: minmax(0, 1fr) 20rem; }
 }
 
 // Watch -------------------------------------------------------------------
 .af-watch {
   display: grid;
   gap: 1.75rem;
-  @include media-breakpoint-up(xl) { grid-template-columns: 1fr 22rem; }
+  @include media-breakpoint-up(xl) { grid-template-columns: minmax(0, 1fr) 22rem; }
 }
 .af-player {
   position: relative;
@@ -235,7 +235,7 @@
   display: grid;
   gap: 2rem;
   align-items: start;
-  @include media-breakpoint-up(lg) { grid-template-columns: 15rem 1fr; }
+  @include media-breakpoint-up(lg) { grid-template-columns: 15rem minmax(0, 1fr); }
 }
 .af-dash-side {
   padding: 1.25rem;
@@ -360,7 +360,8 @@
   display: grid;
   gap: 2.5rem;
   align-items: start;
-  @include media-breakpoint-up(lg) { grid-template-columns: 15rem 1fr; }
+  > * { min-inline-size: 0; }
+  @include media-breakpoint-up(lg) { grid-template-columns: 15rem minmax(0, 1fr); }
 }
 .af-docs-side {
   position: sticky;
@@ -388,6 +389,7 @@
 
 // Components showcase -----------------------------------------------------
 .af-showcase {
+  min-inline-size: 0;
   padding: 1.5rem;
   margin-block-end: 1.5rem;
   background: var(--af-surface);
@@ -405,7 +407,14 @@
   h3 { margin: 0; font-size: 1.05rem; }
   span { font-size: .78rem; color: var(--af-muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
 }
-.af-showcase-demo { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.af-showcase-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+  min-inline-size: 0;
+  > * { max-inline-size: 100%; }
+}
 
 // Page header (shared by inner pages) -------------------------------------
 // `.af-main > section` already carries vertical rhythm, so this one only adds
