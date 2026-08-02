@@ -1,0 +1,313 @@
+// -----------------------------------------------------------------------------
+// Base: document, typography, shared primitives, motion preferences
+// -----------------------------------------------------------------------------
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--af-header-h) + 1rem); }
+
+.af-body {
+  background: var(--af-bg);
+  color: var(--af-text);
+  overflow-x: clip;
+  min-height: 100svh;
+  -webkit-font-smoothing: antialiased;
+}
+
+// A very quiet aurora behind the whole page; costs one paint, no JS.
+.af-body::before {
+  content: "";
+  position: fixed;
+  inset: -20% -10% auto -10%;
+  height: 70vh;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(45rem 28rem at 18% 0%, rgba(124, 92, 255, .28), transparent 65%),
+    radial-gradient(38rem 24rem at 82% 8%, rgba(34, 211, 238, .18), transparent 60%);
+  filter: blur(.5rem);
+}
+[data-bs-theme="light"] .af-body::before { opacity: .55; }
+
+::selection { background: rgba($af-violet, .38); }
+
+// Focus ------------------------------------------------------------------
+:focus-visible {
+  outline: 2px solid var(--af-brand-2);
+  outline-offset: 3px;
+  border-radius: .35rem;
+}
+.btn:focus-visible, .form-control:focus-visible, .form-select:focus-visible { outline-offset: 2px; }
+
+.af-skip {
+  position: fixed;
+  inset-block-start: .5rem;
+  inset-inline-start: .5rem;
+  z-index: 2000;
+  padding: .7rem 1.1rem;
+  border-radius: var(--af-radius);
+  background: var(--af-brand);
+  color: #fff;
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform .2s var(--af-ease);
+  &:focus { transform: none; }
+}
+
+// Typography helpers -----------------------------------------------------
+.af-muted { color: var(--af-muted); }
+.af-eyebrow {
+  margin: 0 0 .4rem;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--af-brand-2);
+}
+.af-gradient-text {
+  background: var(--af-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.af-clamp-2, .af-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.af-clamp-2 { -webkit-line-clamp: 2; line-clamp: 2; }
+.af-clamp-3 { -webkit-line-clamp: 3; line-clamp: 3; }
+
+.af-dot {
+  display: inline-block;
+  inline-size: 3px; block-size: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .45;
+  vertical-align: middle;
+}
+
+// Icons ------------------------------------------------------------------
+.af-icon {
+  inline-size: 1em;
+  block-size: 1em;
+  fill: currentColor;
+  flex: none;
+  vertical-align: -.125em;
+}
+
+// Sections ---------------------------------------------------------------
+.af-main > section,
+.af-section { padding-block: clamp(2.75rem, 5vw, 4.5rem); }
+
+.af-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-block-end: 1.75rem;
+  flex-wrap: wrap;
+}
+.af-section-title { margin: 0; font-size: clamp(1.4rem, 1.1rem + 1.1vw, 2.1rem); }
+.af-section-text { margin: .6rem 0 0; max-inline-size: 56ch; color: var(--af-muted); }
+
+.af-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-weight: 600;
+  color: var(--af-brand-2);
+  white-space: nowrap;
+  .af-icon { transition: transform .2s var(--af-ease); }
+  &:hover .af-icon { transform: translateX(.25rem); }
+}
+[dir="rtl"] .af-link-arrow:hover .af-icon { transform: translateX(-.25rem); }
+
+// Buttons ----------------------------------------------------------------
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  transition: transform .18s var(--af-ease), background-color .18s, border-color .18s, color .18s, box-shadow .18s;
+  &:active { transform: translateY(1px); }
+}
+.btn-primary {
+  --bs-btn-bg: #{$af-violet};
+  --bs-btn-border-color: #{$af-violet};
+  --bs-btn-hover-bg: #{lighten($af-violet, 6%)};
+  --bs-btn-hover-border-color: #{lighten($af-violet, 6%)};
+  --bs-btn-active-bg: #{darken($af-violet, 4%)};
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  box-shadow: 0 .6rem 1.4rem -.7rem rgba($af-violet, .9);
+}
+.btn-ghost {
+  --bs-btn-color: var(--af-text);
+  --bs-btn-hover-color: var(--af-text);
+  --bs-btn-bg: transparent;
+  --bs-btn-hover-bg: var(--af-surface-2);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-border-color: transparent;
+}
+.btn-outline-light {
+  --bs-btn-color: var(--af-text);
+  --bs-btn-border-color: var(--af-border-strong);
+  --bs-btn-hover-color: var(--af-text);
+  --bs-btn-hover-bg: var(--af-surface-2);
+  --bs-btn-hover-border-color: var(--af-border-strong);
+}
+.btn-gradient {
+  border: 0;
+  color: #fff;
+  background: var(--af-gradient);
+  background-size: 180% 180%;
+  transition: background-position .5s var(--af-ease), transform .18s var(--af-ease);
+  &:hover { color: #fff; background-position: 100% 0; }
+}
+
+.af-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--af-radius);
+  background: transparent;
+  color: var(--af-text);
+  font-size: 1.05rem;
+  transition: background-color .18s, color .18s, border-color .18s;
+  &:hover { background: var(--af-surface-2); }
+  &.af-search-open { inline-size: auto; padding-inline: .65rem; }
+}
+.af-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .55rem;
+  border: 0;
+  border-radius: .5rem;
+  background: transparent;
+  color: var(--af-muted);
+  font-size: .875rem;
+  &:hover { color: var(--af-text); background: var(--af-surface-2); }
+}
+
+.af-kbd, kbd {
+  padding: .1rem .35rem;
+  border: 1px solid var(--af-border-strong);
+  border-radius: .35rem;
+  background: var(--af-surface-2);
+  color: var(--af-muted);
+  font-size: .72rem;
+  font-family: inherit;
+  line-height: 1.4;
+}
+
+// Surfaces ---------------------------------------------------------------
+.af-panel {
+  background: var(--af-surface);
+  border: 1px solid var(--af-border);
+  border-radius: var(--af-radius-lg);
+}
+.af-glass {
+  background: var(--af-glass);
+  border: 1px solid var(--af-glass-border);
+  border-radius: var(--af-radius-lg);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+// Skeletons --------------------------------------------------------------
+.af-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--af-skeleton);
+  border-radius: var(--af-radius);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, var(--af-skeleton-hi), transparent);
+    animation: af-shimmer 1.4s infinite;
+  }
+}
+.af-skeleton-line { block-size: .75rem; margin-block-start: .6rem; border-radius: .35rem; }
+.af-skeleton-card .af-poster { aspect-ratio: 2 / 3; }
+@keyframes af-shimmer { 100% { transform: translateX(100%); } }
+
+// Loader -----------------------------------------------------------------
+.af-loader { display: grid; place-items: center; padding: 2.5rem 0; }
+.af-loader-ring {
+  inline-size: 2.25rem; block-size: 2.25rem;
+  border: 3px solid var(--af-border-strong);
+  border-top-color: var(--af-brand);
+  border-radius: 50%;
+  animation: af-spin .8s linear infinite;
+}
+@keyframes af-spin { to { transform: rotate(360deg); } }
+
+// Scroll progress + custom cursor ----------------------------------------
+.af-progress-bar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  block-size: 3px;
+  inline-size: 0;
+  z-index: 1080;
+  background: var(--af-gradient);
+  transition: inline-size .1s linear;
+}
+
+.af-cursor { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .af-cursor {
+    display: block;
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    z-index: 1090;
+    pointer-events: none;
+    mix-blend-mode: difference;
+  }
+  .af-cursor-dot, .af-cursor-ring {
+    position: absolute;
+    border-radius: 50%;
+    translate: -50% -50%;
+  }
+  .af-cursor-dot { inline-size: 6px; block-size: 6px; background: #fff; }
+  .af-cursor-ring {
+    inline-size: 2.2rem; block-size: 2.2rem;
+    border: 1.5px solid rgba(#fff, .7);
+    transition: width .2s var(--af-ease), height .2s var(--af-ease), opacity .2s;
+  }
+  .af-cursor.is-active .af-cursor-ring { inline-size: 3.4rem; block-size: 3.4rem; }
+  body.af-cursor-on { cursor: none; }
+  body.af-cursor-on a, body.af-cursor-on button { cursor: none; }
+}
+
+// Reveal-on-scroll (the AOS replacement, zero dependencies) ----------------
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s var(--af-ease), transform .6s var(--af-ease);
+  &.is-revealed { opacity: 1; transform: none; }
+}
+[data-reveal="left"]  { transform: translateX(-24px); }
+[data-reveal="right"] { transform: translateX(24px); }
+[data-reveal="zoom"]  { transform: scale(.94); }
+
+// Anyone who asks for less motion gets it, everywhere.
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+  .af-cursor { display: none; }
+}

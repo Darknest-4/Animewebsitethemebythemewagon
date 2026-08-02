@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-label="A Silent Voice key art">
+<defs>
+<linearGradient id="bg81" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="hsl(195 65% 26%)"/><stop offset=".5" stop-color="hsl(255 60% 14%)"/><stop offset="1" stop-color="hsl(45 50% 7%)"/>
+</linearGradient>
+<radialGradient id="bl81" cx=".7" cy=".3" r=".6">
+<stop offset="0" stop-color="hsl(255 96% 65%)" stop-opacity=".6"/><stop offset="1" stop-color="hsl(255 96% 65%)" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<rect width="1280" height="720" fill="url(#bg81)"/>
+<rect width="1280" height="720" fill="url(#bl81)"/>
+<g fill="none" stroke="#fff" stroke-opacity=".1">
+<path d="M0 560 C 260 470 420 640 760 520 S 1120 400 1280 470" stroke-width="2"/>
+<path d="M0 620 C 300 540 460 700 800 580 S 1140 470 1280 530" stroke-width="1.5"/>
+</g>
+<g fill="hsl(195 95% 80%)" fill-opacity=".5">
+<circle cx="180" cy="160" r="3"/><circle cx="340" cy="90" r="2"/><circle cx="980" cy="180" r="2.5"/><circle cx="1120" cy="90" r="2"/><circle cx="640" cy="120" r="2"/>
+</g>
+</svg>

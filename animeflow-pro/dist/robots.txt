@@ -1,0 +1,7 @@
+# AnimeFlow Pro
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /watchlist.html
+
+Sitemap: https://animeflow.example.com/sitemap.xml

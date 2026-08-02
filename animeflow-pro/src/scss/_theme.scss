@@ -1,0 +1,82 @@
+// -----------------------------------------------------------------------------
+// Colour modes
+//
+// Bootstrap 5.3 ships native colour modes; the switcher only writes
+// `data-bs-theme="dark|light"` on <html>. Everything below hangs off that one
+// attribute, so there is no duplicate stylesheet and no flash on load.
+// -----------------------------------------------------------------------------
+
+:root {
+  --af-brand: #{$af-violet};
+  --af-brand-2: #{$af-violet-2};
+  --af-accent: #{$af-cyan};
+  --af-pink: #{$af-pink};
+  --af-gradient: linear-gradient(120deg, #{$af-violet} 0%, #{$af-pink} 55%, #{$af-cyan} 100%);
+  --af-gradient-soft: linear-gradient(140deg, rgba(124, 92, 255, .22), rgba(34, 211, 238, .12));
+
+  --af-radius: .75rem;
+  --af-radius-lg: 1.125rem;
+  --af-radius-xl: 1.5rem;
+  --af-header-h: 4.5rem;
+
+  --af-ease: cubic-bezier(.22, .61, .36, 1);
+  --af-dur: .28s;
+}
+
+// Dark (default) --------------------------------------------------------------
+[data-bs-theme="dark"] {
+  --af-bg: #07070e;
+  --af-bg-2: #0b0b14;
+  --af-surface: #12121d;
+  --af-surface-2: #191927;
+  --af-surface-3: #21212f;
+  --af-border: #{rgba(#fff, .09)};
+  --af-border-strong: #{rgba(#fff, .16)};
+  --af-text: #eceaf5;
+  --af-muted: #9d9ab4;
+  --af-glass: #{rgba(#12121d, .72)};
+  --af-glass-border: #{rgba(#fff, .12)};
+  --af-shadow: 0 1.5rem 3rem -1.5rem #{rgba(#000, .85)};
+  --af-shadow-sm: 0 .5rem 1.5rem -.75rem #{rgba(#000, .8)};
+  --af-skeleton: #{rgba(#fff, .06)};
+  --af-skeleton-hi: #{rgba(#fff, .12)};
+  --af-scrim: linear-gradient(to top, #07070e 6%, #{rgba(#07070e, .72)} 42%, #{rgba(#07070e, 0)} 100%);
+
+  color-scheme: dark;
+  --bs-body-bg: var(--af-bg);
+  --bs-body-color: var(--af-text);
+  --bs-secondary-color: var(--af-muted);
+  --bs-border-color: var(--af-border);
+  --bs-emphasis-color: #fff;
+}
+
+// Light -----------------------------------------------------------------------
+[data-bs-theme="light"] {
+  --af-bg: #f6f6fb;
+  --af-bg-2: #ffffff;
+  --af-surface: #ffffff;
+  --af-surface-2: #f2f2f8;
+  --af-surface-3: #e9e9f2;
+  --af-border: #{rgba(#1a1a2e, .1)};
+  --af-border-strong: #{rgba(#1a1a2e, .18)};
+  --af-text: #16162a;
+  --af-muted: #5c5c75;
+  --af-glass: #{rgba(#fff, .82)};
+  --af-glass-border: #{rgba(#1a1a2e, .1)};
+  --af-shadow: 0 1.25rem 2.5rem -1.25rem #{rgba(#1a1a2e, .28)};
+  --af-shadow-sm: 0 .5rem 1.25rem -.75rem #{rgba(#1a1a2e, .25)};
+  --af-skeleton: #{rgba(#1a1a2e, .07)};
+  --af-skeleton-hi: #{rgba(#1a1a2e, .13)};
+  --af-scrim: linear-gradient(to top, #f6f6fb 4%, #{rgba(#f6f6fb, .72)} 45%, #{rgba(#f6f6fb, 0)} 100%);
+
+  color-scheme: light;
+  --bs-body-bg: var(--af-bg);
+  --bs-body-color: var(--af-text);
+  --bs-secondary-color: var(--af-muted);
+  --bs-border-color: var(--af-border);
+  --bs-emphasis-color: #000;
+}
+
+// The theme toggle shows the icon for the mode you would switch *to*.
+[data-bs-theme="dark"] .af-theme-light { display: none; }
+[data-bs-theme="light"] .af-theme-dark { display: none; }
